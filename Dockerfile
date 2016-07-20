@@ -1,19 +1,14 @@
 FROM dsop/alpine-base
 
+ENV PACKER_VERSION 0.10.1
+
 RUN cd /usr/local/bin && \
-    wget https://releases.hashicorp.com/packer/0.8.6/packer_0.8.6_linux_amd64.zip && \
-    unzip packer_0.8.6_linux_amd64.zip && \
-    rm packer_0.8.6_linux_amd64.zip
+    curl -L https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip -o packer_${PACKER_VERSION}_linux_amd64.zip && \
+    unzip packer_${PACKER_VERSION}_linux_amd64.zip && \
+    rm packer_${PACKER_VERSION}_linux_amd64.zip
 
-RUN apk update && \
-  apk upgrade && \
-  apk add \
-    docker@community openrc util-linux && \
+RUN apk --update add dbus && \
   rm -rf /var/cache/apk/*
-
-RUN echo "#!/bin/bash" > /usr/local/bin/start-docker && \
-    echo "start-stop-daemon -S -b -x /usr/bin/docker  -- daemon" >> /usr/local/bin/start-docker && \
-    chmod +x /usr/local/bin/start-docker
 
 WORKDIR /work
 
