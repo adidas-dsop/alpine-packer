@@ -1,6 +1,6 @@
 FROM dsop/alpine-base
 
-ENV PACKER_VERSION 0.10.1
+ENV PACKER_VERSION 0.11.0
 
 RUN cd /usr/local/bin && \
     curl -L https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip -o packer_${PACKER_VERSION}_linux_amd64.zip && \
