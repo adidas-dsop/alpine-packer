@@ -7,7 +7,7 @@ RUN cd /usr/local/bin && \
     unzip packer_${PACKER_VERSION}_linux_amd64.zip && \
     rm packer_${PACKER_VERSION}_linux_amd64.zip
 
-RUN apk --update add dbus python py-pip && \
+RUN apk --update add dbus python py2-pip && \
 	pip install awscli && \
 	apk --purge -v del py-pip && \
 	rm -rf /var/cache/apk/*
