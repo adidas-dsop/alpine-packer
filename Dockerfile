@@ -9,7 +9,7 @@ RUN cd /usr/local/bin && \
 
 RUN apk --update add dbus python py2-pip && \
 	pip install awscli && \
-	apk --purge -v del py-pip && \
+	apk --purge -v del py2-pip && \
 	rm -rf /var/cache/apk/*
 
 WORKDIR /work
